@@ -16,9 +16,12 @@ db.once('open', () => {
 
 const app = express()
 
+app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
+app.set('view engine', 'hbs')
+
 
 app.get('/', (req, res) => {
-  res.send('Hello~~~')
+  res.render('index')
 })
 
 
