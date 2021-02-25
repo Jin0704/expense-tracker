@@ -1,6 +1,7 @@
 const express = require('express')
 const session = require('express-session')
 const exphbs = require('express-handlebars')
+const usePassport = require('./config/passport')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 
@@ -11,6 +12,7 @@ require('./config/mongoose')
 const routes = require('./routes')
 const app = express()
 const PORT = process.env.PORT || 3000
+usePassport(app)
 
 hdb.registerHelper('ifEquals', function (arg1, arg2, options) {
   return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
