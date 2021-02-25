@@ -9,6 +9,7 @@ require('./config/mongoose')
 
 const routes = require('./routes')
 const app = express()
+const PORT = process.env.PORT || 3000
 
 hdb.registerHelper('ifEquals', function (arg1, arg2, options) {
   return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
@@ -21,6 +22,6 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 app.use(routes)
 
-app.listen(3000, () => {
-  console.log('The web is running on http://localhost:3000')
+app.listen(PORT, () => {
+  console.log(`The web is running on http://localhost:${PORT}`)
 })
