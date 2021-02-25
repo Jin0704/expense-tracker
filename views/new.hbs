@@ -1,9 +1,9 @@
 <form class="container mx-5" action="/records" method="POST">
   <div class="input-group">
     <label class="form-label col-4 my-4" for="record-name">支出名稱</label>
-    <input class="col-8 my-4" type="text" placeholder="請輸入項目名稱" id="record-name" name="name" value="">
+    <input class="col-8 my-4" type="text" placeholder="請輸入項目名稱" id="record-name" name="name" value="" required>
     <label class="form-label col-4 my-4" for="record-category">支出類別</label>
-    <select class="form-select col-8 my-4" name="category" id="record-category">
+    <select class="form-select col-8 my-4" name="category" id="record-category" required>
       <option selected disabled>Choose...</option>
       <option>生活</option>
       <option>交通</option>
@@ -12,9 +12,11 @@
       <option>其他</option>
     </select>
     <label class="form-label col-4 my-4" for="record-amount">支出金額</label>
-    <input class="col-8 my-4" type="text" placeholder="請輸入金額" id="record-amount" name="amount" value="">
+    <input class="col-8 my-4" type="text" placeholder="請輸入金額" id="record-amount" name="amount" value="" required>
     <label class="form-label  col-4 my-4 " for="record-date">日期</label>
-    <input class="col-8 my-4" type="date" placeholder="date" id="record-date" name="date" value="">
+    <input class="col-8 my-4" type="date" placeholder="date" id="record-date" name="date" value="" required>
+    <label class="form-label col-4 my-4" for="record-merchant">商家</label>
+    <input class="col-8 my-4" type="text" placeholder="請輸入商家" id="merchant" name="merchant" value="">
     <div class="col-12 my-4 d-flex justify-content-between">
       <button class="btn btn-success" type="submit">Create</button>
       <a class="btn btn-dark" href="/"><i class="fas fa-chevron-left"></i> Back</a>

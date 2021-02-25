@@ -1,8 +1,9 @@
 <form class="container mx-5" action="/records/{{ record._id }}?_method=PUT" method="POST">
   <div class="input-group">
-    <label class="form-label col-4 my-4" for="record-name">支出名稱</label>
+    <h2 class="col-12 mb-5" style="text-align: center;"><strong>請輸入本次支出內容</strong></h2>
+    <label class="form-label col-4 my-4" for="record-name" required>支出名稱</label>
     <input class="col-8 my-4" type="text" placeholder="請輸入項目名稱" id="record-name" name="name" value="{{ record.name }}">
-    <label class="form-label col-4 my-4 " for="record-category">支出類別</label>
+    <label class="form-label col-4 my-4 " for="record-category" required>支出類別</label>
     <select class="form-select col-8 my-4 " name="category" id="record-category">
       <option selected disabled>Choose...</option>
       <option {{#ifEquals record.category '生活' }}selected{{/ifEquals}}>生活</option>
@@ -11,11 +12,15 @@
       <option {{#ifEquals record.category '飲食' }}selected{{/ifEquals}}>飲食</option>
       <option {{#ifEquals record.category '其他' }}selected{{/ifEquals}}>其他</option>
     </select>
-    <label class="form-label col-4 my-4" for="record-amount">支出金額</label>
+    <label class="form-label col-4 my-4" for="record-amount" required>支出金額</label>
     <input class="col-8 my-4" type="text" placeholder="請輸入項目金額" id="record-amount" name="amount"
-      value="{{ record.amount }}">
+      value="{{ record.amount }}" required>
     <label class="form-label col-4 my-4" for="record-date">日期</label>
-    <input class="col-8 my-4" type="date" placeholder="date" id="record-date" name="date" value="{{ record.date }}">
+    <input class="col-8 my-4" type="date" placeholder="date" id="record-date" name="date" value="{{ record.date }}"
+      required>
+    <label class="form-label col-4 my-4" for="record-merchant">商家</label>
+    <input class="col-8 my-4" type="text" placeholder="請輸入商家" id="merchant" name="merchant"
+      value="{{ record.merchant }}">
     <div class="col-12 my-4 d-flex justify-content-between">
       <button class="btn btn-success" type="submit">Save</button>
       <a class="btn btn-dark" href="/"><i class="fas fa-chevron-left"></i> Back</a>
