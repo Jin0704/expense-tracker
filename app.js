@@ -12,7 +12,8 @@ require('./config/mongoose')
 const routes = require('./routes')
 const app = express()
 const PORT = process.env.PORT || 3000
-usePassport(app)
+
+
 
 hdb.registerHelper('ifEquals', function (arg1, arg2, options) {
   return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
@@ -26,9 +27,18 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }))
-
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
+
+usePassport(app)
+
+app.use((req, res, next) => {
+  res.locals.isAuthenticated = req.isAuthenticated()
+  res.locals.user = req.user
+  next()
+})
+
+
 app.use(routes)
 
 app.listen(PORT, () => {
