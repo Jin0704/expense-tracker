@@ -3,18 +3,20 @@ const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 
-const mongoose = require('mongoose')  // 載入 mongoose
 const Record = require('./models/Record')
-mongoose.connect('mongodb://localhost/expense-tracker', { useNewUrlParser: true, useUnifiedTopology: true }) // 設定連線到 mongoDB
-const db = mongoose.connection
+require('./config/mongoose')
+// const mongoose = require('mongoose')  // 載入 mongoose
+// const Record = require('./models/Record')
+// mongoose.connect('mongodb://localhost/expense-tracker', { useNewUrlParser: true, useUnifiedTopology: true }) // 設定連線到 mongoDB
+// const db = mongoose.connection
 
-db.on('error', () => {
-  console.log('mongodb error!')
-})
+// db.on('error', () => {
+//   console.log('mongodb error!')
+// })
 
-db.once('open', () => {
-  console.log('mongodb connected')
-})
+// db.once('open', () => {
+//   console.log('mongodb connected')
+// })
 
 const routes = require('./routes')
 const app = express()
