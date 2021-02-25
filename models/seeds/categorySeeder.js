@@ -1,3 +1,7 @@
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
+
 const Category = require('../Category')
 const db = require('../../config/mongoose')
 
@@ -28,4 +32,5 @@ db.once('open', () => {
   console.log('mongodb connected!')
   categoryList.forEach(category => Category.create(category))
   console.log('done')
+  process.exit()
 }) 
