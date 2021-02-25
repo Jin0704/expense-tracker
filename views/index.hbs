@@ -5,25 +5,72 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>私房錢記帳本</title>
 </head>
 
 <body>
-  <a href="./records/new">Create</a>
   <ul>
-    {{#each records}}
-    <li>
-      {{this.name}}
-      {{this.category}}
-      {{this.amount}}
-      <a href="./records/{{ this._id }}">detail</a>
-      <a href="./records/{{ this._id }}/edit">edit</a>
-      <form action="./records/{{ this._id }}?_method=DELETE" method="POST" style="display: inline;">
-        <button type="submit">delete</button>
+    <div class="my-5">
+      <h1 class="d-flex justify-content-center">私房錢記帳本</h1>
+    </div>
+    <div>
+      <form action="/" method="GET">
+        <label class="form-label" for="categorySelect">
+          分類
+        </label>
+        <select class="form-select" name="categorySelect" id="categorySelect" onchange="submit();">
+          <option selected>全部</option>
+          <option {{#ifEquals categorySelect "生活" }}selected{{/ifEquals}}>生活</option>
+          <option {{#ifEquals categorySelect "交通" }}selected{{/ifEquals}}>交通</option>
+          <option {{#ifEquals categorySelect "娛樂" }}selected{{/ifEquals}}>娛樂</option>
+          <option {{#ifEquals categorySelect "飲食" }}selected{{/ifEquals}}>飲食</option>
+          <option {{#ifEquals categorySelect "其他" }}selected{{/ifEquals}}>其他</option>
+        </select>
       </form>
-    </li>
-    {{/each}}
-  </ul>
+    </div>
+    <div class="my-5">
+      <h2>總金額:</h2>
+      <h1 class="d-flex justify-content-center">
+        NT${{totalAmount}}
+      </h1>
+    </div>
+
+
+    <ul class="list-group list-group-flush">
+      {{#each records}}
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-10 row">
+            <div class="col-1" style="font-size: 2rem; color:rgb(255, 217, 0);">
+              {{#ifEquals this.category "生活"}}<i class="fas fa-home"></i>{{/ifEquals}}
+              {{#ifEquals this.category "交通"}}<i class="fas fa-shuttle-van"></i>{{/ifEquals}}
+              {{#ifEquals this.category "娛樂"}}<i class="fas fa-grin-beam"></i>{{/ifEquals}}
+              {{#ifEquals this.category "飲食"}}<i class="fas fa-utensils"></i>{{/ifEquals}}
+              {{#ifEquals this.category "其他"}}<i class="fas fa-pen"></i>{{/ifEquals}}
+            </div>
+            <div class="col-7 mr-auto">
+              <h5 style="display: inline;">
+                {{ this.name }}
+              </h5>
+              <div>
+                {{this.date}}
+              </div>
+            </div>
+            <div class="col-4" style="text-align:right;">
+              <h4 class="mr-4">{{this.amount}}</h4>
+            </div>
+          </div>
+          <div class="col-2">
+            <a class="btn btn-success" href="./records/{{this._id}}/edit" style="margin: 5px;">修改</a>
+            <form action="./records/{{ this._id }}?_method=DELETE" method="POST" style="display: inline;">
+              <button class="btn btn-danger" type="submit">刪除</button>
+            </form>
+          </div>
+
+        </div>
+      </li>
+      {{/each}}
+    </ul>
 </body>
 
 </html>

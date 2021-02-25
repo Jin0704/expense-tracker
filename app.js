@@ -4,22 +4,15 @@ const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 
 const Record = require('./models/Record')
+const hdb = require('handlebars')
 require('./config/mongoose')
-// const mongoose = require('mongoose')  // 載入 mongoose
-// const Record = require('./models/Record')
-// mongoose.connect('mongodb://localhost/expense-tracker', { useNewUrlParser: true, useUnifiedTopology: true }) // 設定連線到 mongoDB
-// const db = mongoose.connection
-
-// db.on('error', () => {
-//   console.log('mongodb error!')
-// })
-
-// db.once('open', () => {
-//   console.log('mongodb connected')
-// })
 
 const routes = require('./routes')
 const app = express()
+
+hdb.registerHelper('ifEquals', function (arg1, arg2, options) {
+  return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
+})
 
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')

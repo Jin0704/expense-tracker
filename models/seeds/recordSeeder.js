@@ -8,6 +8,7 @@ db.once('open', () => {
       name: 'name-' + i,
       category: '其它',
       amount: Math.floor(Math.random() * 100) + 1,
+      date: '2021-2-1'
     })
   }
   console.log('done')
