@@ -1,5 +1,7 @@
 <form action="/records/{{ record._id }}/edit" method="POST">
   <input type="text" placeholder="name" name="name" value="{{ record.name }}">
-  <button type="submit">Save</button>
+  <input type="text" placeholder="category" name="category" value="{{record.category}}">
+  <input type="text" placeholder="amount" name="amount" value="{{record.amount}}">
+  <button type=" submit">Save</button>
   <a href="/">back</a>
 </form>

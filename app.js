@@ -34,8 +34,7 @@ app.get('/records/new', (req, res) => {
 })
 
 app.post('/records', (req, res) => {
-  const name = req.body.name
-  return Record.create({ name })
+  return Record.create(req.body)
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })
@@ -58,10 +57,13 @@ app.get('/records/:id/edit', (req, res) => {
 
 app.post('/records/:id/edit', (req, res) => {
   const id = req.params.id
-  const name = req.body.name
+  const { name, category, amount } = req.body
   return Record.findById(id)
     .then(record => {
-      record.name = name
+      // record.name = name
+      // record.category = category
+      // record.amount = amount
+      record = Object.assign(record, req.body) //專業一點的寫法
       return record.save()
     })
     .then(() => res.redirect(`/records/${id}`))

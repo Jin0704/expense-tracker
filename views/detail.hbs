@@ -1,4 +1,8 @@
-<p>{{ record.name }}</p>
+<p>
+  <li>名稱:{{ record.name }}</li>
+  <li>種類:{{ record.category }}</li>
+  <li>價格:{{ record.amount }}</li>
+</p>
 <a href="/records/{{ record._id }}/edit">edit</a>
 <a href="/">back</a>
 <form action="/records/{{ record._id }}/delete" method="POST" style="display: inline;">
