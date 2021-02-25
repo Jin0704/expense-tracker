@@ -3,7 +3,6 @@ const exphbs = require('express-handlebars')
 
 const mongoose = require('mongoose')  // 載入 mongoose
 mongoose.connect('mongodb://localhost/expense-tracker', { useNewUrlParser: true, useUnifiedTopology: true }) // 設定連線到 mongoDB
-
 const db = mongoose.connection
 
 db.on('error', () => {
