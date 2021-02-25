@@ -13,14 +13,6 @@ router.post('/', (req, res) => {
     .catch(error => console.log(error))
 })
 
-router.get('/:id', (req, res) => {
-  const id = req.params.id
-  return Record.findById(id)
-    .lean()
-    .then((record) => res.render('detail', { record }))
-    .catch(error => console.log(eroor))
-})
-
 router.get('/:id/edit', (req, res) => {
   const id = req.params.id
   return Record.findById(id)
@@ -40,7 +32,7 @@ router.put('/:id', (req, res) => {
       record = Object.assign(record, req.body) //專業一點的寫法
       return record.save()
     })
-    .then(() => res.redirect(`/records/${id}`))
+    .then(() => res.redirect(`/`))
     .catch(error => console.log(error))
 })
 
