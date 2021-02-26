@@ -18,7 +18,10 @@
         記帳本
       </a>
       {{#if isAuthenticated}}
-      <a href="/users/logout" class="btn btn-outline-light">Logout</a>
+      <div style="display: inline-block;">
+        <a href="/records/new" class="btn btn-outline-light">Create</a>
+        <a href="/users/logout" class="btn btn-outline-light">Logout</a>
+      </div>
       {{else}}
       <a href="/users/login" class="btn btn-outline-light">Login</a>
       {{/if}}
