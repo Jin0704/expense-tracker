@@ -14,7 +14,6 @@ router.get('/', (req, res) => {
       .then(records => {
         for (let record of records) {
           totalAmount += record.amount
-          record.stringDate = formatDate(record.date)
         }
         res.render('index', { records, totalAmount })
       })
@@ -26,7 +25,6 @@ router.get('/', (req, res) => {
       .then(records => {
         for (let record of records) {
           totalAmount += record.amount
-          record.stringDate = formatDate(record.date)
         }
         res.render('index', { records, totalAmount, categorySelect })
       })
